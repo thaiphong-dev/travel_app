@@ -1,15 +1,18 @@
-"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { IoMdArrowDropdown } from "react-icons/io";
+import { useTranslation } from "react-i18next";
+
 export default function Header() {
+  const { t } = useTranslation();
   const menuList = [
-    { label: "Home", link: "/" },
-    { label: "About Us", link: "/aboutUs" },
+    // { label: "Home", link: "/" },
+    // { label: "Booking", link: "/booking" },
     { label: "Shop", link: "/shop" },
-    { label: "Booking", link: "/booking" },
-    { label: "Contact", link: "/contact" },
+    { label: "About Us", link: "/aboutUs" },
+    { label: "Contact Us", link: "/contact" },
   ];
   const pathName = usePathname();
   const router = useRouter();
@@ -31,67 +34,52 @@ export default function Header() {
 
   return (
     <div
-      className={`${
-        isTop
-          ? "fixed top-0 bg-transparent transition-all duration-150 z-50 text-white "
-          : "fixed top-0 bg-white z-50  text-primary-7 transition-all duration-150"
-      } flex w-full items-center xs: px-[3rem]  sm: justify-between xs: pt-[1rem] xl: pb-[15px] space-x-[40px] `}
+      className={` fixed top-0 bg-white z-50 text-cus-invert-dark text-[20px] transition-all duration-150 flex w-full items-center justify-between px-[150px] `}
     >
       <div
-        className="text-[24px]"
+        className="font-[600] text-[24px] text-cus-primary2 w-auto rounded-full flex justify-between items-center uppercase"
         onClick={() => {
           router.push("/");
         }}
       >
-        {/* <Image
+        <Image
           onClick={() => {
             router.push("/");
           }}
-          className=" cursor-pointer"
-          src={isTop ? "/image/logo.png" : "/image/logo1.png"}
+          className=" cursor-pointer rounded-full "
+          src="/images/logo.jpg"
           alt="giving"
-          width={150}
+          width={70}
           height={0}
-        /> */}
-        LOGO
+        />
+        PL Badminton
       </div>
-      <div className="hidden  lg:block ">
-        <ul className={` flex items-center justify-between space-x-[2rem]`}>
+      <div className="hidden lg:block ">
+        <ul className="flex items-center justify-between space-x-[2rem]">
           {menuList.map((item, index) => {
             return (
               <li
-                className={`min-w-[90px] cursor-pointer text-center text-[20px] hover:text-primary-2 hover:font-bold ${
-                  pathName?.trim() === item.link ? "!text-primary-2" : ""
+                className={` min-w-[120px] cursor-pointer text-center font-semibold hover:text-cus-primary2 hover:font-bold uppercase ${
+                  pathName?.trim() === item.link ? "!text-green-600" : ""
                 }`}
                 key={index}
               >
-                <Link href={item.link}>{item.label}</Link>
+                <Link href={item.link}>{t(item.label)}</Link>
               </li>
             );
           })}
+          <li
+            className={`min-w-[90px] cursor-pointer text-center font-semibold hover:text-cus-primary2 hover:font-bold `}
+          >
+            <button className="bg-cus-primary-dark w-[180px] text-white rounded-[34px] h-[40px] flex justify-center items-center hover:bg-green-800">
+              <Link href="/booking">{t("Booking now")}</Link>
+              <IoMdArrowDropdown />
+            </button>
+          </li>
         </ul>
-      </div>
-      <div className=" cursor-pointer hidden transform lg:block">
-        <Link href="/login" className="text-[18px]  hover:text-primary-2 ">
-          Login
-        </Link>
-        /
-        <Link href="/register" className="text-[18px]  hover:text-primary-2 ">
-          Register
-        </Link>
       </div>
 
       <div className=" text-[24px] lg:hidden" onClick={() => {}}>
-        {/* <Image
-          onClick={() => {
-            router.push("/");
-          }}
-          className=" cursor-pointer"
-          src={isTop ? "/image/logo.png" : "/image/logo1.png"}
-          alt="giving"
-          width={150}
-          height={0}
-        /> */}
         MBMN
       </div>
     </div>
