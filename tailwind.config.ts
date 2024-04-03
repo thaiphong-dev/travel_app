@@ -13,6 +13,9 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      screens: {
+        "mid-size": "1120px",
+      },
       colors: {
         "cus-primary": " #028267",
         "cus-primary-dark": " #046450",
@@ -36,6 +39,9 @@ const config: Config = {
         "cus-font-title": " #000",
         "cus-point-error": " #ed4949",
         "cus-point-positive": " #3683d1",
+        "cus-icon-red": " #f05c60",
+        "cus-bg-grey": " #f7f7f7",
+        "cus-bg-blue": " #323657",
       },
     },
   },

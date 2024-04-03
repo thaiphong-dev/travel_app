@@ -5,6 +5,7 @@ const resources = {
   en: {
     translation: {
       Shop: "Shop",
+      Home: "Home",
       "About Us": "About Us",
       "Booking now": "Booking now",
       Location: "Location",
@@ -26,6 +27,7 @@ const resources = {
   vi: {
     translation: {
       Shop: "Cửa hàng",
+      Home: "Trang chủ",
       "About Us": "Về chúng tôi",
       "Contact Us": "Liên hệ",
       "Booking now": "Đặt sân ngay",

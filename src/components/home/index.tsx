@@ -4,7 +4,7 @@ import CourtInformation from "./infro";
 
 export default function HomePage() {
   return (
-    <div>
+    <div className="w-screen">
       <Banner />
       <CourtInformation />
     </div>
