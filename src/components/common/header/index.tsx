@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next";
 import SideBar from "../sideBar";
 
 export default function Header() {
+  const [isShowSideBar, setIsShowSideBar] = useState(false);
   const { t } = useTranslation();
   const menuList = [
     { label: "Home", link: "/" },
@@ -85,12 +86,25 @@ export default function Header() {
         <div className="flex justify-between items-center w-[120px]">
           <SlHandbag size="30px" />
           <RxPerson size="30px" />
-          <HiMiniSquares2X2 size="30px" />
+          <HiMiniSquares2X2
+            size="30px"
+            onClick={() => setIsShowSideBar(true)}
+          />
         </div>
       </div>
+      {/* cover screen  */}
 
       {/* // side bar menu  */}
-      {/* <SideBar /> */}
+      {isShowSideBar && (
+        <div
+          className="w-screen h-screen absolute top-0 left-0 bg-black opacity-50 z-50"
+          onClick={() => setIsShowSideBar(false)}
+        ></div>
+      )}
+      <SideBar
+        isShowSideBar={isShowSideBar}
+        setIsShowSideBar={setIsShowSideBar}
+      />
     </div>
   );
 }
