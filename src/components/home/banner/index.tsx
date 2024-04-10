@@ -13,9 +13,9 @@ const great_Vibes = Great_Vibes({
 
 export default function Banner() {
   const { t } = useTranslation();
-  const mockData = ["/images/banner/banner.jpg", "/images/banner/banner1.jpg"];
+  const mockData = ["/images/banner/bannerCourt.webp"];
   return (
-    <div className="w-full">
+    <div className="w-full relative">
       <Swiper
         autoplay={{
           delay: 2500,
@@ -28,26 +28,20 @@ export default function Banner() {
       >
         {mockData?.map((x, index) => (
           <SwiperSlide key={index}>
-            <div className="z-10 absolute font-sans text-white space-y-[20px] top-[30%] mid-size:bottom-[10%] mid-size:left-[10%] h-auto ">
-              <div className="font-semibold text-[18px] w-[375px]  mid-size:text-[42px]  mid-size:w-[770px]">
-                <p className={`${great_Vibes.className}`}>
-                  {t("Welcome to")}{" "}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-br from-purple-400 to-red-600">
-                    PL Badminton
-                  </span>
+            <div className="z-10 bg-white flex justify-center items-center w-[430px] mid-size:py-[40px] mid-size:px-[56px] mid-size:w-[500px] h-[265px] absolute  inset-x-0 mx-auto  inset-y-0 my-auto  opacity-90">
+              <div className="flex flex-col justify-center items-center space-y-[20px]">
+                <p className="text-[28px] uppercase font-semibold text-center">
+                  PREMIUM PROFESSIONAL BADMINTON HALL IN <br />
+                  HO CHI MINH
                 </p>
-              </div>
-              <div className=" w-[375px] mid-size:w-[754px]">
-                <p className=" text-[12px] mid-size:text-[24px] font-bold">
-                  {t(
-                    "Experience the most popular badminton courts in HCM City. Stun others with your splendid display of backhand and smash strokes!"
-                  )}
-                </p>
+                <button className="text-[16px] w-[90%] mid-size:w-[150px] h-[50px] rounded-full border-2 uppercase border-cus-invert-dark hover:bg-cus-invert hover:text-white hover:font-semibold">
+                  Book now
+                </button>
               </div>
             </div>
             <img
               alt="banner"
-              className="w-full overflow-hidden h-[350px] mid-size:h-auto"
+              className="w-full overflow-hidden h-[60vh] mid-size:h-[60vh] object-cover"
               src={x}
             />
           </SwiperSlide>
