@@ -6,6 +6,7 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import { SlHandbag } from "react-icons/sl";
 import { RxPerson } from "react-icons/rx";
 import { HiMiniSquares2X2 } from "react-icons/hi2";
+import { RxHamburgerMenu } from "react-icons/rx";
 import { useTranslation } from "react-i18next";
 import SideBar from "../sideBar";
 
@@ -14,9 +15,13 @@ export default function Header() {
   const { t } = useTranslation();
   const menuList = [
     { label: "Home", link: "/" },
-    { label: "About Us", link: "/aboutUs" },
+    { label: "Book now", link: "/booking" },
+    { label: "Pricing", link: "/pricing" },
     { label: "Shop", link: "/shop" },
-    { label: "Contact Us", link: "/contact" },
+    { label: "Facilities", link: "/facilities" },
+    { label: "Location", link: "/location" },
+    { label: "FAQ", link: "/faq" },
+    { label: "Account", link: "/account" },
   ];
   const pathName = usePathname();
   const router = useRouter();
@@ -37,35 +42,39 @@ export default function Header() {
   }, []);
 
   return (
-    <div>
+    <div className="relative flex flex-col justify-center items-center mid-size:mb-[50px]">
       <div
-        className={` fixed top-0 bg-white z-50 text-cus-invert-dark text-[18px] transition-all duration-150 flex w-full items-center justify-between  px-[20px]  mid-size:px-[100px] `}
+        className="flex justify-center items-center my-[50px] w-[230px] h-[70px] mid-size:h-[300px] mid-size:w-[500px] mid-size:my-0 "
+        onClick={() => {
+          router.push("/");
+        }}
       >
-        <div className="flex justify-center items-center">
-          <div
-            className="font-[600] text-[24px] text-cus-primary2 w-auto rounded-full flex justify-between items-center "
-            onClick={() => {
-              router.push("/");
-            }}
-          >
-            <Image
-              onClick={() => {
-                router.push("/");
-              }}
-              className=" cursor-pointer rounded-full "
-              src="/images/logo.jpg"
-              alt="giving"
-              width={70}
-              height={0}
-            />
-            {/* PL Badminton */}
-          </div>
-          <ul className="hidden min-[1120px]:flex items-center justify-between space-x-[2rem]">
+        <Image
+          onClick={() => {
+            router.push("/");
+          }}
+          className=" cursor-pointer "
+          src="/images/smash.webp"
+          alt="giving"
+          width={500}
+          height={0}
+        />
+        {/* PL Badminton */}
+
+        <div className="absolute right-[20px] pl-[30px] hover:cursor-pointer mid-size:hidden">
+          <RxHamburgerMenu size="25px" onClick={() => setIsShowSideBar(true)} />
+        </div>
+      </div>
+      <div className="flex justify-between">
+        <div className="flex justify-center items-center ">
+          <ul className="hidden min-[1120px]:flex items-center justify-between space-x-[1rem]">
             {menuList.map((item, index) => {
               return (
                 <li
-                  className={` min-w-[90px] cursor-pointer text-center font-semibold hover:text-cus-primary2 hover:font-bold  ${
-                    pathName?.trim() === item.link ? "!text-green-600" : ""
+                  className={` uppercase min-w-[90px] cursor-pointer text-center font-medium hover:text-cus-primary2  ${
+                    pathName?.trim() === item.link
+                      ? "!text-cus-primary-dark"
+                      : ""
                   }`}
                   key={index}
                 >
@@ -73,28 +82,12 @@ export default function Header() {
                 </li>
               );
             })}
-            <li
-              className={`min-w-[90px] cursor-pointer text-center font-semibold hover:text-cus-primary2 hover:font-bold `}
-            >
-              <button className="bg-cus-primary-dark w-[180px] text-white rounded-[34px] h-[40px] flex justify-center items-center hover:bg-green-800">
-                <Link href="/booking">{t("Booking now")}</Link>
-                <IoMdArrowDropdown />
-              </button>
-            </li>
           </ul>
         </div>
-        <div className="flex justify-between items-center w-[120px]">
-          <SlHandbag size="30px" />
-          <RxPerson size="30px" />
-          <HiMiniSquares2X2
-            size="30px"
-            onClick={() => setIsShowSideBar(true)}
-          />
-        </div>
       </div>
-      {/* cover screen  */}
 
       {/* // side bar menu  */}
+      {/* cover screen  */}
       {isShowSideBar && (
         <div
           className="w-screen h-screen absolute top-0 left-0 bg-black opacity-50 z-50"
